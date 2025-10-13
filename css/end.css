@@ -1,0 +1,208 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: url('../assets/bg-timer.png') no-repeat center center fixed;
+  background-size: cover;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh; 
+}
+
+/* ====== Page Wrapper ====== */
+.page {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ====== Header ====== */
+.header {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.bexsero-logo {
+  width: 200px;
+  height: auto;
+}
+
+/* ====== References ====== */
+.references {
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.references h3 {
+  margin-bottom: 5px;
+}
+
+.references ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+/* ====== Safety Section ====== */
+.safety {
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.safety h3 {
+  margin-bottom: 10px;
+}
+
+/* ====== Footer ====== */
+.footer {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+
+.footer-left {
+  max-width: 90%;
+  line-height: 1.5;
+}
+
+.footer-left a {
+  color: #005590;
+  text-decoration: none;
+}
+
+.gsk-logo {
+  width: 80px;
+  margin-bottom: 10px;
+}
+
+.footer-right {
+  text-align: right;
+}
+
+.qr-code {
+  width: 80px;
+  height: 80px;
+}
+
+/* ====== Restart Button ====== */
+.restart-btn {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 14px 50px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.restart-btn:hover {
+  background-color: #218838;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* ✅ الشاشات الصغيرة (موبايلات أقل من 600px) */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  .page {
+    padding: 20px;
+  }
+
+  .bexsero-logo {
+    width: 150px;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .qr-code {
+    width: 60px;
+    height: 60px;
+  }
+
+  .restart-btn {
+    /* width: 80%; */
+    font-size: 16px;
+    /* padding: 12px 0; */
+    padding: 7px 30px;
+
+  }
+}
+
+/* ✅ الشاشات المتوسطة (تابلت) */
+@media (min-width: 601px) and (max-width: 1024px) {
+   body {
+    font-size: 19px;
+  }
+  .page {
+    padding: 30px;
+  }
+
+  .bexsero-logo {
+    width: 180px;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .qr-code {
+    width: 70px;
+    height: 70px;
+  }
+
+  .restart-btn {
+    top: 40%;
+    padding: 14px 40px;
+    font-size: 17px;
+  }
+}
+
+/* ✅ الشاشات الكبيرة (لابتوبات وديسكتوبات) */
+@media (min-width: 1025px) {
+  .page {
+    padding: 50px 80px;
+  }
+
+  .bexsero-logo {
+    width: 220px;
+  }
+
+  .qr-code {
+    width: 90px;
+    height: 90px;
+  }
+
+  .restart-btn {
+    top: 50%;
+  }
+}
+

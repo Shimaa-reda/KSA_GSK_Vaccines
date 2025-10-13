@@ -1,0 +1,591 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: url('../assets/bg-timer.png') no-repeat center center/cover;
+  background-size: 100% 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* ===== Top Bar ===== */
+.top-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 15px 20px;
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
+}
+
+.timer {
+  border: 3px solid #3ba745;
+  color: #3ba745;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: white;
+}
+
+/* ===== Title ===== */
+.main-title {
+  /* margin-top: 110px; */
+  text-align: center;
+  font-size: 1.1rem;
+  color: #555;
+  font-weight: 500;
+}
+
+/* ===== Main Container ===== */
+.container-game {
+  width: 90%;
+  /* max-width: 1200px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 80px;
+}
+
+.dropped-item {
+  opacity: 1;
+  cursor: default;
+}
+
+/* ===== Boxes ===== */
+.box {
+  width: 40%;
+  height: 550px;
+  border-radius: 15px;
+  padding: 20px;
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: center;
+  gap: 10px;
+}
+
+.flu-box {
+  background: #e6f2ff;
+  border: 2px solid #a8ccf7;
+}
+
+.meningitis-box {
+  background: #ffe5e5;
+  border: 2px solid #f5b4b4;
+}
+
+.box h4 {
+  font-weight: 700;
+  margin-bottom: 15px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; 
+  gap: 8px;
+  white-space: nowrap; 
+  text-align: left; 
+  font-size: 20px;
+}
+
+.drop-zone {
+  width: 100%;
+  height: 400px;
+  border: 2px dashed #a8ccf7; 
+  border-radius: 15px;
+  /* background-color: rgba(255, 255, 255, 0.5); */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  position: relative;
+  padding: 15px;
+  gap: 10px;
+}
+
+/* غيّري اللون للبوكس الأحمر */
+.meningitis-box .drop-zone {
+  border-color: #f5b4b4;
+}
+
+.icon img {
+  width: 30px;
+}
+
+.placeholder-text {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #0072ce;
+  opacity: 0.8;
+  font-weight: 500;
+  pointer-events: none;
+  white-space: nowrap;        
+  overflow: hidden;            
+  text-overflow: ellipsis;     
+  max-width: 90%;        
+  font-size: 13px;     
+}
+
+.meningitis-box .placeholder-text {
+  color: #d83a3a;
+}
+
+/* ===== Symptoms ===== */
+.symptoms {
+  width: 35%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 15px;
+  /* margin-top: 50px; */
+}
+
+.drag-item {
+  background: white;
+  color: #333;
+  border-radius: 25px;
+  padding: 10px 15px;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  cursor: grab;
+  transition: 0.2s;
+  user-select: none;
+  width: 45%; /* ثابت العرض */
+  text-align: center;
+  font-size: 15px;
+}
+
+.drag-item:active {
+  transform: scale(1.1);
+  cursor: grabbing;
+}
+
+.correct {
+  background-color: #EDFFF0 !important;
+  color: #0EAE3B !important;
+  border-radius: 99px;
+  border: 1px solid #0EAE3B;
+}
+
+.wrong {
+  background-color: #FFEBEB !important;
+  color: #FF0000 !important;
+  border-radius: 99px;
+  border: 1px solid #F00;
+}
+
+/* ===== Modals ===== */
+.custom-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.custom-modal-content {
+  background: white;
+  border-radius: 25px;
+  padding: 20px 60px;
+  /* max-width: 500px; */
+  text-align: center;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+}
+
+.custom-modal-content h6 {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.custom-modal-content p {
+  color: #000;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.btn-try,
+.btn-expose {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-try {
+  background-color: #F9D5C2;
+  color: #E9590D;
+  width: 170px;
+  /* padding-inline: 50px; */
+}
+
+.btn-expose {
+  background-color: #E9590D;
+}
+
+.btn-try:hover,
+.btn-expose:hover {
+  opacity: 0.9;
+}
+
+.btn-ok {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  background-color: #3ba745;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  width: 170px;
+}
+
+.btn-ok:hover {
+  opacity: 0.9;
+}
+/* ========================== */
+/* ✅ الشاشات المتوسطة (Tablet) */
+/* ========================== */
+@media (max-width: 1200px) and (min-width: 768px) {
+  .container-game {
+    width: 95%;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .box {
+    width: 38%;
+    height: 450px;
+    padding: 15px;
+  }
+
+  .box h4 {
+    font-size: 18px;
+  }
+
+  .icon img {
+    width: 25px;
+  }
+
+  .drop-zone {
+    height: 320px;
+    padding: 10px;
+  }
+
+  .placeholder-text {
+    font-size: 12px;
+  }
+
+  .symptoms {
+    width: 28%;
+    gap: 10px;
+  }
+
+  .drag-item {
+    width: 100%;
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .main-title {
+    font-size: 1rem;
+  }
+
+  .timer {
+    width: 55px;
+    height: 55px;
+    font-size: 1.3rem;
+  }
+
+  .logo img {
+    height: 35px;
+  }
+}
+
+/* ========================== */
+/* ✅ الشاشات الصغيرة (Mobile) */
+/* ========================== */
+@media (max-width: 767px) {
+  body {
+    overflow-y: auto;
+    height: auto;
+    min-height: 100vh;
+    padding: 10px 0;
+    justify-content: flex-start;
+  }
+
+  .top-bar {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    padding: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 0;
+    z-index: 10;
+  }
+
+  .logo img {
+    height: 30px;
+  }
+
+  .timer {
+    width: 45px;
+    height: 45px;
+    font-size: 1rem;
+  }
+
+  .container-game {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    padding: 0 10px;
+    margin-top: 70px;
+  }
+
+  .flu-box {
+    order: 1;
+    width: 100%;
+  }
+
+  .symptoms {
+    order: 2;
+    width: 100%;
+    gap: 8px;
+    margin-bottom: 10px;
+    justify-content: space-between;
+  }
+
+  .main-title {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+  }
+
+  .meningitis-box {
+    order: 3;
+    width: 100%;
+  }
+
+  .box {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    min-height: 250px;
+  }
+
+  .box h4 {
+    font-size: 16px;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+  }
+
+  .icon img {
+    width: 24px;
+  }
+
+  .drop-zone {
+    height: auto;
+    min-height: 200px;
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .placeholder-text {
+    font-size: 12px;
+    top: 50%;
+  }
+
+  .drag-item {
+    width: calc(50% - 4px);
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  .custom-modal-content {
+    padding: 20px 60px;
+  }
+
+  .custom-modal-content p {
+    font-size: 20px;
+  }
+
+  .modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .btn-try,
+  .btn-expose,
+  .btn-ok {
+    width: 170px;
+  }
+}
+
+/* ========================== */
+
+@media (max-width: 1200px) and (min-width: 768px) {
+  body {
+    overflow-y: auto;
+    height: auto;
+    min-height: 100vh;
+    padding: 20px 0;
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container-game {
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    width: 80%; 
+    max-width: 800px; 
+    margin: 90px auto 0 auto; 
+    background: rgba(255, 255, 255, 0.3); 
+    border-radius: 15px; 
+    padding: 15px;
+  }
+
+  .top-bar {
+    width: 80%;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .flu-box,
+  .meningitis-box,
+  .symptoms {
+    width: 100%;
+  }
+
+  .box {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .drop-zone {
+    height: auto;
+    min-height: 250px;
+    padding: 15px;
+  }
+
+  .main-title {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+
+  .drag-item {
+    width: calc(50% - 8px);
+    font-size: 15px;
+  }
+
+  .logo img {
+    height: 35px;
+  }
+
+  .timer {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 767px) {
+  body {
+    overflow-y: auto;
+    height: auto;
+    min-height: 100vh;
+    padding: 10px 0;
+    justify-content: flex-start;
+  }
+
+  .top-bar {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    width: 90%; 
+    margin: 0 auto; 
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 0 10px;
+    z-index: 10;
+  }
+
+  .logo img {
+    height: 30px;
+  }
+
+  .timer {
+    width: 45px;
+    height: 45px;
+    font-size: 1rem;
+  }
+
+  .container-game {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    padding: 0 10px;
+    margin-top: 70px;
+  }
+
+  
+}

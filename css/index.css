@@ -1,0 +1,240 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  background: url("../assets/bg.png") center center no-repeat;
+  background-size: 100% 100%; 
+  background-attachment: fixed; 
+}
+
+/* Main layout */
+.main-container {
+  position: relative;
+  min-height: 100vh; 
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Header */
+.header {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 70px;
+}
+
+/* GSK logo */
+.gsk-logo {
+  position: absolute;
+  left: 70px;
+}
+
+.logo-img {
+  width: 100px;
+}
+
+/* Spot text */
+.spot-text {
+  text-align: center;
+}
+
+.red-flag-text {
+  color: #b31919;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Small gray text (top right) */
+.small-text {
+  font-size: 12px;
+  color: #444;
+}
+
+/* Top text (small text on right) */
+.top-text {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  text-align: right;
+  z-index: 2;
+}
+
+/* Footer section */
+.footer-section {
+  position: relative;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 150px;
+  bottom: -10px;
+}
+
+/* Footer text */
+.footer-text {
+  font-size: 10px;
+  color: #000000;
+  text-align: left;
+  margin-bottom: -10px;
+}
+
+/* Play button */
+.bottom-btn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.play-btn {
+  background-color: #f57c00;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 30px;
+  padding: 10px 25px;
+  transition: 0.3s;
+}
+
+.play-btn:hover {
+  background-color: #e96a00;
+  color: white;
+}
+
+/* ===== Modal Style ===== */
+.custom-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-modal-content {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.custom-modal-content h5 {
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.custom-modal-content p {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.btn-start {
+  background-color: #f57c00;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 25px;
+  padding: 10px 25px;
+  transition: 0.3s;
+}
+
+.btn-start:hover {
+  background-color: #e96a00;
+  color: white;
+
+}
+.btn-start {
+  background-color: #ff7b00;
+  color: white;
+  border: none;
+}
+
+.btn-start:hover,
+.btn-start:active,
+.btn-start:focus,.play-btn:hover,.play-btn:focus,.play-btn:active {
+  background-color: #e96a00 !important;
+  color: white !important;
+  outline: none;
+  box-shadow: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ✅ Responsive adjustments */
+@media (max-width: 575.98px) {
+  .main-container {
+    padding: 20px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: center;
+    top: 20px;
+  }
+
+  .gsk-logo {
+    position: static;
+    margin-bottom: 10px;
+  }
+
+  .spot-text {
+    text-align: center;
+    margin-top: 5px;
+  }
+
+  .top-text {
+    position: static;
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .footer-text {
+    text-align: start;
+  }
+
+  .bottom-btn {
+    position: static;
+    margin-top: 20px;
+    transform: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199.98px){ 
+  .gsk-logo {
+    position: absolute;
+    left: 30px;
+  }
+
+  .header {
+    top: 120px;
+  }
+
+  .footer-text {
+    margin-bottom: 0px;
+  }
+
+  .play-btn {
+    margin-left: 140px !important;
+    padding: 10px !important;
+    margin-bottom: 10px !important;
+  }
+}
