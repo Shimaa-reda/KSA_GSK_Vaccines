@@ -60,13 +60,13 @@ items.forEach(item => {
     e.dataTransfer.setData("text", item.textContent);
 
     // صورة مؤقتة أثناء السحب
-    const clone = item.cloneNode(true);
-    clone.style.opacity = "0.7";
-    clone.style.position = "absolute";
-    clone.style.top = "-9999px";
-    document.body.appendChild(clone);
-    e.dataTransfer.setDragImage(clone, 0, 0);
-    setTimeout(() => document.body.removeChild(clone), 0);
+    // const clone = item.cloneNode(true);
+    // clone.style.opacity = "0.7";
+    // clone.style.position = "absolute";
+    // clone.style.top = "-9999px";
+    // document.body.appendChild(clone);
+    // e.dataTransfer.setDragImage(clone, 0, 0);
+    // setTimeout(() => document.body.removeChild(clone), 0);
   });
 });
 
