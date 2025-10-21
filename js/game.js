@@ -1,14 +1,14 @@
-// ===== عناصر السحب =====
+// options
 const items = document.querySelectorAll(".drag-item");
 
-// ===== مناطق الإسقاط =====
+// boxes
 const dropZones = document.querySelectorAll(".drop-zone");
 
-// ===== المؤقت =====
+// timer
 let timerValue = 24;
 const timerElement = document.getElementById("timer");
 
-// ===== المودال الأول =====
+// modal
 const modalHTML = `
   <div id="endModal" class="custom-modal">
     <div class="custom-modal-content">
@@ -28,7 +28,7 @@ const modalHTML = `
 document.body.insertAdjacentHTML("beforeend", modalHTML);
 const modal = document.getElementById("endModal");
 
-// ===== مودال النجاح =====
+// modal
 const successModalHTML = `
   <div id="successModal" class="custom-modal">
     <div class="custom-modal-content">
@@ -47,10 +47,10 @@ const successModalHTML = `
 document.body.insertAdjacentHTML("beforeend", successModalHTML);
 const successModal = document.getElementById("successModal");
 
-// ===== السحب =====
+
 items.forEach(item => {
   item.addEventListener("dragstart", e => {
-    // لو العنصر تم سحبه قبل كده → امنع السحب
+    
     if (item.classList.contains("used")) {
       e.preventDefault();
       return;
@@ -59,7 +59,7 @@ items.forEach(item => {
     e.dataTransfer.setData("type", item.dataset.type);
     e.dataTransfer.setData("text", item.textContent);
 
-    // صورة مؤقتة أثناء السحب
+    
     // const clone = item.cloneNode(true);
     // clone.style.opacity = "0.7";
     // clone.style.position = "absolute";
@@ -70,7 +70,7 @@ items.forEach(item => {
   });
 });
 
-// ===== الإفلات =====
+
 dropZones.forEach(zone => {
   zone.addEventListener("dragover", e => e.preventDefault());
 
@@ -80,10 +80,10 @@ dropZones.forEach(zone => {
     const text = e.dataTransfer.getData("text");
     const draggedItem = [...items].find(i => i.textContent === text);
 
-    // لو العنصر موجود واتسحب قبل كده، ما تعملش حاجة
+    
     if (!draggedItem || draggedItem.classList.contains("used")) return;
 
-    // إنشاء نسخة بدل النقل
+    
     const clone = draggedItem.cloneNode(true);
     clone.draggable = false;
     clone.classList.add("dropped-item");
@@ -91,18 +91,17 @@ dropZones.forEach(zone => {
 
     zone.appendChild(clone);
 
-    // إخفاء النص المؤقت
+  
     const placeholder = zone.querySelector(".placeholder-text");
     if (placeholder) placeholder.style.opacity = 0;
 
-    // تحديد أن العنصر ده تم استخدامه
+    
     draggedItem.classList.add("used");
     draggedItem.style.opacity = "0.5";
     draggedItem.style.cursor = "not-allowed";
   });
 });
 
-// ===== العداد =====
 const timerInterval = setInterval(() => {
   timerValue--;
   timerElement.textContent = timerValue;
@@ -114,7 +113,7 @@ const timerInterval = setInterval(() => {
   }
 }, 1000);
 
-// ===== فحص الإجابات =====
+
 function checkAnswers() {
   const droppedItems = document.querySelectorAll(".dropped-item");
   droppedItems.forEach(item => {
@@ -132,7 +131,7 @@ function checkAnswers() {
   });
 }
 
-// ===== إظهار المودال الأول =====
+
 function showModal() {
   modal.style.display = "flex";
 
@@ -145,22 +144,22 @@ function showModal() {
   });
 }
 
-// ===== عرض الإجابات الصحيحة =====
+
 function exposeCorrectAnswers() {
   const fluBox = document.querySelector("#fluDropZone");
   const meningitisBox = document.querySelector("#meningitisDropZone");
 
-  // امسح كل المحتوى القديم
+  
   fluBox.innerHTML = "";
   meningitisBox.innerHTML = "";
 
-  // مرّ على كل العناصر الأصلية
+  
   items.forEach(item => {
     const clone = item.cloneNode(true);
     clone.classList.add("correct");
     clone.draggable = false;
 
-    // حذف التأثيرات القديمة (لو كانت باهتة)
+    
     clone.classList.remove("used");
     clone.style.opacity = "1";
     clone.style.cursor = "default";
@@ -172,19 +171,19 @@ function exposeCorrectAnswers() {
     }
   });
 
-  // كمان نرجّع العناصر الأصلية لشكلها الطبيعي
+  
   items.forEach(item => {
     item.classList.remove("used");
     item.style.opacity = "1";
     item.style.cursor = "grab";
   });
 
-  // إخفاء المودال الأول بعد العرض
+  
   modal.style.display = "none";
 
-  // تأخير قصير لإظهار الإجابات بوضوح قبل الـ spotlight
+  // spotlight
   setTimeout(() => {
-    // إنشاء overlay للصفحة كلها
+    //overlay
     const overlay = document.createElement("div");
     overlay.style.position = "fixed";
     overlay.style.top = "0";
@@ -195,16 +194,16 @@ function exposeCorrectAnswers() {
     overlay.style.zIndex = "1000";
     document.body.appendChild(overlay);
 
-    // جعل بوكس Meningitis ظاهر وأمامي (زيادة z-index وإزالة أي تأثير باهت)
+    
     const meningitisBoxElement = document.querySelector(".meningitis-box");
     if (meningitisBoxElement) {
       meningitisBoxElement.style.zIndex = "1001";
       meningitisBoxElement.style.opacity = "1";
-      // إضافة تأثير إضاءة إذا أردت (اختياري)
+
       meningitisBoxElement.style.boxShadow = "0 0 20px rgba(255, 255, 255, 0.5)";
     }
 
-    // إخفاء الـ overlay بعد 5 ثواني وإظهار مودال النجاح فوراً
+    
     setTimeout(() => {
       if (overlay.parentNode) {
         overlay.parentNode.removeChild(overlay);
@@ -216,16 +215,16 @@ function exposeCorrectAnswers() {
       showSuccessModal();
     }, 5000);
 
-  }, 2000); // تأخير 2 ثانية لإظهار الإجابات أولاً
+  }, 2000); 
 }
 
-// ===== إظهار مودال النجاح =====
+
 function showSuccessModal() {
   successModal.style.display = "flex";
 
   document.getElementById("okBtn").addEventListener("click", () => {
     successModal.style.display = "none";
-    // الانتقال إلى صفحة end
+    // redirect
     window.location.href = "end.html";
   });
 }

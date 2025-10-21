@@ -17,7 +17,7 @@ body {
   position: relative;
 }
 
-/* ===== Top Bar ===== */
+
 .top-bar {
   width: 100%;
   display: flex;
@@ -55,7 +55,7 @@ body {
   background: white;
 }
 
-/* ===== Title ===== */
+
 .main-title {
   /* margin-top: 110px; */
   text-align: center;
@@ -64,7 +64,7 @@ body {
   font-weight: 500;
 }
 
-/* ===== Main Container ===== */
+
 .container-game {
   width: 90%;
   /* max-width: 1200px; */
@@ -79,7 +79,6 @@ body {
   cursor: default;
 }
 
-/* ===== Boxes ===== */
 .box {
   width: 40%;
   height: 550px;
@@ -132,7 +131,6 @@ body {
   gap: 10px;
 }
 
-/* غيّري اللون للبوكس الأحمر */
 .meningitis-box .drop-zone {
   border-color: #f5b4b4;
 }
@@ -161,7 +159,7 @@ body {
   color: #d83a3a;
 }
 
-/* ===== Symptoms ===== */
+
 .symptoms {
   width: 35%;
   display: flex;
@@ -182,7 +180,7 @@ body {
   cursor: grab;
   transition: 0.2s;
   user-select: none;
-  width: 45%; /* ثابت العرض */
+  width: 45%;
   text-align: center;
   font-size: 15px;
 }
@@ -204,9 +202,8 @@ body {
   color: #FF0000 !important;
   border-radius: 99px;
   border: 1px solid #F00;
-}
 
-/* ===== Modals ===== */
+}
 .custom-modal {
   position: fixed;
   top: 0;
@@ -289,9 +286,9 @@ body {
 .btn-ok:hover {
   opacity: 0.9;
 }
-/* ========================== */
-/* ✅ الشاشات المتوسطة (Tablet) */
-/* ========================== */
+
+/* (Tablet) */
+
 @media (max-width: 1200px) and (min-width: 768px) {
   .container-game {
     width: 95%;
@@ -349,9 +346,9 @@ body {
   }
 }
 
-/* ========================== */
-/* ✅ الشاشات الصغيرة (Mobile) */
-/* ========================== */
+
+/* (Mobile) */
+
 @media (max-width: 767px) {
   body {
     overflow-y: auto;
@@ -474,7 +471,7 @@ body {
   }
 }
 
-/* ========================== */
+
 
 @media (max-width: 1200px) and (min-width: 768px) {
   body {

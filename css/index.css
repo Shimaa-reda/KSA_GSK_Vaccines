@@ -25,7 +25,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 70px;
+  top: 50px;
 }
 
 /* GSK logo */
@@ -50,22 +50,20 @@ body {
   line-height: 1.2;
 }
 
-/* Small gray text (top right) */
+
 .small-text {
   font-size: 12px;
   color: #444;
 }
 
-/* Top text (small text on right) */
 .top-text {
   position: absolute;
-  top: 30px;
+  top: 10px;
   right: 30px;
   text-align: right;
   z-index: 2;
 }
 
-/* Footer section */
 .footer-section {
   position: relative;
   margin-top: auto;
@@ -76,7 +74,6 @@ body {
   bottom: -10px;
 }
 
-/* Footer text */
 .footer-text {
   font-size: 10px;
   color: #000000;
@@ -84,7 +81,6 @@ body {
   margin-bottom: -10px;
 }
 
-/* Play button */
 .bottom-btn {
   position: absolute;
   left: 50%;
@@ -107,7 +103,7 @@ body {
   color: white;
 }
 
-/* ===== Modal Style ===== */
+
 .custom-modal {
   display: none;
   position: fixed;
@@ -179,7 +175,7 @@ body {
   to { opacity: 1; transform: scale(1); }
 }
 
-/* ✅ Responsive adjustments */
+
 @media (max-width: 575.98px) {
   .main-container {
     padding: 20px;
