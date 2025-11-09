@@ -12,6 +12,17 @@ let timerStarted = false;
 const introModal = document.getElementById("introModal");
 const startBtn = document.getElementById("startBtn");
 
+// لو الصفحة لسه متفتحتش أول مرة، يظهر المودال
+if (!localStorage.getItem("restarted")) {
+  introModal.style.display = "flex";
+} else {
+  // لو دي إعادة تشغيل، يبدأ التايمر والصوت مباشرة
+  introModal.style.display = "none";
+  startTimer();
+  timerStarted = true;
+  localStorage.removeItem("restarted");
+}
+
 startBtn.addEventListener("click", () => {
   introModal.style.display = "none";
   if (!timerStarted) {
@@ -60,7 +71,7 @@ const successModal = document.getElementById("successModal");
 
 // ===== Timer Function =====
 function startTimer() {
-  timerSound.play().catch(() => {}); // تشغيل الصوت
+  timerSound.play().catch(() => {});
   const timerInterval = setInterval(() => {
     timerValue--;
     timerElement.textContent = timerValue;
@@ -136,6 +147,8 @@ function showModal() {
   timerSound.pause();
 
   document.getElementById("tryAgainBtn").addEventListener("click", () => {
+    // نحط علامة إنها إعادة تشغيل علشان المودال متظهرش تاني
+    localStorage.setItem("restarted", "true");
     location.reload();
   });
 
