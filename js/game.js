@@ -3,7 +3,7 @@ const items = document.querySelectorAll(".drag-item");
 const dropZones = document.querySelectorAll(".drop-zone");
 let timerValue = 24;
 const timerElement = document.getElementById("timer");
-const timerSound = new Audio("../assets/ticking-clock-182894.mp3");
+const timerSound = new Audio("./assets/ticking-clock-182894.mp3");
 timerSound.loop = true;
 
 let timerStarted = false;
